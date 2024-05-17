@@ -9,29 +9,22 @@ int main()
     {
         int m, n;
         cin >> m >> n;
-        vector<chr> a[m][n];
+        vector<string> a(m);
         for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
-            {
-                cin >> a[i][j];
-            }
+            cin >> a[i];
         }
-        int row = 0;
-        int col = 0;
+        int count = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (a[m - 1][i] == 'D')
+                count++;
+        }
         for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < n; j++)
-            {
-                if (a[i][j] == 'R')
-                {
-                    col++;
-                }
-                if (a[i][j] == 'D')
-                {
-                    row++;
-                }
-            }
+            if (a[i][n - 1] == 'R')
+                count++;
         }
+        cout << count << endl;
     }
 }
