@@ -1,38 +1,47 @@
-    #include <bits/stdc++.h>
-    using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
-    int main()
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int t;cin>>t;
-        while(t--){
-            long long n;
-            cin >> n;
-            set<long long> s;
-            for (long long i = 0; i < n; i++) {
-                long long x;
-                cin >> x;
-                s.insert(x); 
+        long long n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+        sort(a, a + n);
+        int x = a[0], y = 0;
+        for (int i = 1; i < n; i++)
+        {
+            if (a[i] % x != 0)
+            {
+                y = a[i];
+                break;
             }
-            vector<long long> a(s.begin(), s.end()); 
-            n = a.size(); 
-            long long flag = 0;
-            if(n<=2){
-                flag = 1;
-            }
-            else{
-                for (long long i = 0; i < n;i++){
-                    if(a[i]%a[0]==0 || a[i]%a[1]==0){
-                        flag = 1;
-                    }
-                    else{
-                        flag = 0;
-                        break;
-                    }
+        }
+        if (n <= 2 || y == 0)
+        {
+            cout << "Yes\n";
+        }
+        else
+        {
+            int ct = 0;
+            for (long long i = 1; i < n; i++)
+            {
+                if (a[i] % x == 0 || a[i] % y == 0)
+                {
+                    ct++;
                 }
             }
-            if(flag)
+            if (ct == n - 1)
                 cout << "Yes\n";
             else
                 cout << "No\n";
         }
     }
+}
