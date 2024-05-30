@@ -7,12 +7,16 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long n, z;
+        int n, z;
         cin >> n >> z;
-        long long a[n];
+        int man;
+        int maxnum = 0;
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
+            cin >> man;
+            int y = z | man;
+            maxnum = max(maxnum, y);
         }
+        cout << maxnum << endl;
     }
 }
