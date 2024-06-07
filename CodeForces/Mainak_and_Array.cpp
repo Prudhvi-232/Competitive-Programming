@@ -17,12 +17,12 @@ int main()
         int f = a[0], l = a[n - 1];
         int sum,sum1,final,final1=0;
         for (int i = 1; i < n;i++){
-            int x = abs(a[i] - a[i - 1]);
+            int x = a[i - 1]-a[i];
             final1 = max(x, final1);
         }
         sort(a, a + n);
-        sum = max(abs(f - a[0]), abs(f-a[n-1]));
-        sum1 = max(abs(l - a[0]), abs(l-a[n - 1]));
+        sum =  a[n-1]-f;
+        sum1 = l-a[0];
         final = max(sum, sum1);
         final = max(final, final1);
         cout << final << endl;
