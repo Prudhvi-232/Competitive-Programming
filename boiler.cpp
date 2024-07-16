@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #define int long long
-#define e endl;
-#define yes cout<<"YES\n"<<endl;
-#define no cout<<"NO\n"<<endl;
+// #define e endl;
+// #define yes cout<<"YES\n"<<endl;
+// #define no cout<<"NO\n"<<endl;
 
 using namespace std;
 void solve()
