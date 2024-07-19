@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #define int long long
 // #define e endl;
-// #define yes cout<<"YES\n"<<endl;
-// #define no cout<<"NO\n"<<endl;
+#define yes cout<<"YES"<<endl;
+#define no cout<<"NO"<<endl;
 
 using namespace std;
 void solve()
@@ -10,28 +10,28 @@ void solve()
     string a, b;
     cin >> a >> b;
     int len = a.length();
-    int k=0;
+    int k=len-1;
     int len2 = b.length();
-    int flag = 0;
-    for (int i = 0; i < len2;i++){
-        flag = 0;
-        for (int j = k; j < len;j++){
-            if (a[j] == b[i])
+    for (int i = len2-1; i >=0 ;i--){
+        int flag = 0;
+        for (int j = len-1; j >= 0;j--){
+            if (a[j] == b[i]&&j>k)
             {
-                flag = 1;
+                no
+                return ;
+            }
+            else if(a[j] == b[i]){
+                a[j] = '0';
                 k = j;
+                flag = 1;
                 break;
             }
         }
         if(flag==0){
-            cout << "NO" << endl;
-            return;
-        }
-        if(k==len){
-            break;
+            no return;
         }
     }
-    cout << "YES" << endl;
+    yes
 }
 int32_t main()
 {
