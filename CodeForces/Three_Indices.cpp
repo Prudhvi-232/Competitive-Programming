@@ -9,6 +9,12 @@ void solve()
 {
     int n;
     cin >> n;
+    vi a(n + 1);
+    fr(n){
+        cin >> a[i];
+    }
+    int id = 0;
+    fr()
 }
 int32_t main()
 {
