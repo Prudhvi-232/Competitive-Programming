@@ -1,76 +1,55 @@
 #include <bits/stdc++.h>
-#define yes cout << "YES" << endl;
-#define no cout << "NO" << endl;
-#define vi vector<int>
-#define fr(n) for (int i = 0; i < n; i++)
-typedef long long ll;
 using namespace std;
 
-int findMaxRepeatingElement(const vector<int>& arr, int n) {
-    unordered_map<int, int> frequencyMap;
-    for (int i = 0; i < n; i++) {
-        frequencyMap[arr[i]]++;
-    }
-
-    int maxCount = 0;
-    int maxElement = 0;
-    bool hasRepeating = false;
-
-    for (const auto& pair : frequencyMap) {
-        if (pair.second > maxCount) {
-            maxCount = pair.second;
-            maxElement = pair.first;
-            hasRepeating = true;
-        } else if (pair.second == maxCount && pair.first > maxElement) {
-            maxElement = pair.first;
-        }
-    }
-
-    if (maxCount == 1) {
-        return 0;
-    }
-
-    return maxElement;
-}
+#define e endl
+#define int long long
+#define ip(s) int s; cin >> s;
+#define ipp(arr, n) int arr[n]; f(n) cin >> arr[i];
+#define f(n) for (int i = 0; i < n; i++)
 
 void solve() {
-    int n;
-    cin >> n;
-    vi a(n);
-    fr(n) {
-        cin >> a[i];
+    ip(n);
+    ipp(arr, n);
+    
+    vector<int> b;
+    map<int, int> mp, mp2;
+    int ans = 0, m = 0;
+    
+    f(n) {
+        ans += arr[i];
+        mp[arr[i]]++;
+        if (mp[arr[i]] >= 2) m = max(m, arr[i]);
+        b.push_back(m);
+        ans += m;
+        mp2[m]++;
     }
-    vi b(n, 0);
-    ll sum = 0;
-
-    // Replace the array and calculate sum until the condition is met
-    while (true) {
-        bool updated = false;
-        for (int i = 0; i < n; i++) {
-            sum += a[i];
-            int x = findMaxRepeatingElement(a, i + 1); // Use i + 1 to consider up to the ith index
-            if (b[i] != x) {
-                updated = true;
-            }
-            b[i] = x;
-        }
-        if (!updated) break; // Exit loop if no update was made
-        for (int i = 0; i < n; i++) {
-            a[i] = b[i];
+    
+    int s = 0, g = 0;
+    for (int i = 1; i < b.size(); i++) {
+        if (mp2[b[i]] == 1) {
+            b[i] = b[i - 1];
+            g++;
         }
     }
-
-    cout << sum << endl;
+    
+    int sum = 0;
+    f(n) sum += b[i];
+    
+    for (int i = n - 1; i >= 0; i--) {
+        if (b[i] == 0) break;
+        sum -= b[i];
+        ans += sum;
+    }
+    
+    cout << ans << e;
 }
 
 int32_t main() {
-    ios::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int t;
+    int t = 1;
     cin >> t;
-    while (t--) {
-        solve();
-    }
+    while (t--) solve();
     return 0;
 }
